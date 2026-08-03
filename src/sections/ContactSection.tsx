@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti';
 import { SectionHeader } from '../components/SectionHeader';
 import { GlassCard } from '../components/GlassCard';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import emailjs from '@emailjs/browser';
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -12,31 +13,49 @@ export const ContactSection: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      
-      // Fire confetti celebration
-      try {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#06b6d4', '#10b981', '#8b5cf6'],
-        });
-      } catch {
-        // Fallback silently if confetti fails
-      }
+  try {
+    await emailjs.send(
+      "service_fi4ek9r",
+      "template_udbwz5j",
+      {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "C1iDmRKaoE0PRwTHr"
+    );
 
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 6000);
-    }, 1000);
-  };
+    setIsSubmitted(true);
 
+    try {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#06b6d4', '#10b981', '#8b5cf6'],
+      });
+    } catch {}
+
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+
+    setTimeout(() => setIsSubmitted(false), 6000);
+
+  } catch (error: any) {
+  console.error("EmailJS Error:", error);
+
+  alert(JSON.stringify(error, null, 2));
+}
+};
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
@@ -199,6 +218,7 @@ export const ContactSection: React.FC = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-mono text-slate-400 mb-1">Your Name *</label>
