@@ -199,7 +199,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           <GlassCard>
             <h3 className="text-xl font-bold text-slate-100 mb-2">Send a Message</h3>
             <p className="text-xs text-slate-400 mb-6">
-              Have a position or opportunity? Feel free to reach out directly using this form.
+              Interested in discussing a Software Engineering, Full-Stack Development, AI, or Internship opportunity? Feel free to send me a message and I'll get back to you within 24–48 hours.
             </p>
 
             {isSubmitted ? (
@@ -211,9 +211,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                   <Sparkles className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-100">Message Sent Successfully!</h4>
+                <h4 className="text-lg font-bold text-slate-100">Thank You!</h4>
                 <p className="text-xs text-slate-300">
-                  Thank you for reaching out. I will respond to your message as soon as possible.
+                   Your message has been sent successfully. I'll get back to you soon.
                 </p>
               </motion.div>
             ) : (
@@ -227,7 +227,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. John Doe"
+                      placeholder="Hiring Manager / Recruiter Name"
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-colors"
                     />
                   </div>
@@ -238,7 +238,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="e.g. john@example.com"
+                      placeholder="recruiter@company.com"
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-colors"
                     />
                   </div>
@@ -251,7 +251,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Opportunity / Inquiry regarding Full-Stack / Software Engineering"
+                    placeholder="Software Engineering / Full-Stack / AI Opportunity"
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-colors"
                   />
                 </div>
@@ -263,7 +263,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Hello Raina, I came across your portfolio..."
+                    placeholder="Hi Raina Zohreen N, I came across your portfolio and would like to discuss a Software Engineering opportunity with you."
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-colors resize-none"
                   />
                 </div>
